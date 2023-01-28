@@ -15,3 +15,4 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('user/edit', [UserController::class, 'edit']);
+Route::put('user/edit', [UserController::class, 'update']);
