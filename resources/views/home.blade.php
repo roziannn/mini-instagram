@@ -8,7 +8,7 @@
                 <div class="card-header">{{ __('Dashboard') }}</div>
 
                 <div class="card-body">
-                    <img src="{{ asset('images/avatar/' .$user->avatar ) }}" alt="foto profil {{ $user->username }}" width="150">
+                    <x-avatar :user="$user"/>
                     <h3>Hello, {{$user->username  }}</h3>
                     <p></p>
                     @if (session('status'))
@@ -21,6 +21,13 @@
                     <br>
 
                     {{ __('You are logged in!') }}
+
+                    {{-- <h3>Feeds</h3>
+                    @foreach ($user->posts as $post)
+                        <li>
+                            <img src="{{asset('images/posts/' . $post->image) }}" alt="{{ $post->caption }}"/>
+                        </li>
+                    @endforeach --}}
                 </div>
             </div>
         </div>
