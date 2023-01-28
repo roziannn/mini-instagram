@@ -8,7 +8,9 @@
                 <div class="card-header">{{ __('Dashboard') }}</div>
 
                 <div class="card-body">
-                    <h3>Hello, {{Auth::user()->username  }}</h3>
+                    <img src="{{ asset('images/avatar/' .$user->avatar ) }}" alt="foto profil {{ $user->username }}" width="150">
+                    <h3>Hello, {{$user->username  }}</h3>
+                    <p></p>
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">
                             {{ session('status') }}
