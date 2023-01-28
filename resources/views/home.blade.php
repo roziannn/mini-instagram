@@ -8,9 +8,6 @@
                 <div class="card-header">{{ __('Dashboard') }}</div>
 
                 <div class="card-body">
-
-                    {{ __('You are logged in!') }}
-
                     <h3>Feeds</h3>
                     @foreach ($user->posts as $post)
                         <li>
