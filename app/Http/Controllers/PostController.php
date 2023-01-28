@@ -46,9 +46,9 @@ class PostController extends Controller
         $imageName = $user->image;
 
         //create name for image
-        if($request->image){
+        if ($request->image) {
             $image_img = $request->image;
-            $imageName = $user->username.'-'.time() . '.' . $image_img->extension();
+            $imageName = $user->username . '-' . time() . '.' . $image_img->extension();
             $image_img->move(public_path('images/posts'), $imageName);
         }
 
@@ -81,7 +81,7 @@ class PostController extends Controller
     {
         //catch post
         $post = Post::find($id);
-        return view('post.edit',compact('post'));
+        return view('post.edit', compact('post'));
     }
 
     /**
@@ -95,10 +95,12 @@ class PostController extends Controller
     {
         $post = Post::find($id);
 
+        if ($post->user_id != Auth::user()->id);
+        abort(403);
+
         $request->validate([
             'caption' => 'max:255'
         ]);
-
 
         $post->update([
             'caption' => $request->caption,

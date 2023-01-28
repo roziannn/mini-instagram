@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -40,5 +41,13 @@ class UserController extends Controller
         ]);
 
         return redirect('user/edit');
+    }
+
+    public function show($username){
+        $user = User::where('username', $username)->first();
+        //if no user or user empty
+        if(!$user) abort(404);
+
+        return view('user.profile', compact('user'));
     }
 }

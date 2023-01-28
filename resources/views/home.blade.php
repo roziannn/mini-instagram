@@ -8,17 +8,6 @@
                 <div class="card-header">{{ __('Dashboard') }}</div>
 
                 <div class="card-body">
-                    <x-avatar :user="$user"/>
-                    <h3>Hello, {{$user->username  }}</h3>
-                    <p></p>
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    <a href="/post/create">Upload</a>
-                    <br>
 
                     {{ __('You are logged in!') }}
 
@@ -27,7 +16,6 @@
                         <li>
                             <img src="{{asset('images/posts/' . $post->image) }}" alt="{{ $post->caption }}" width="200px"
                             height="200px"/>
-                            <a href="/post/{{$post->id}}/edit">Edit</a>
                         </li>
                     @endforeach
                 </div>
