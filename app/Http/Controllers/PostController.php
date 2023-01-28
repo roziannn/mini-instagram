@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -78,7 +79,9 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        //
+        //catch post
+        $post = Post::find($id);
+        return view('post.edit',compact('post'));
     }
 
     /**
@@ -90,7 +93,18 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $post = Post::find($id);
+
+        $request->validate([
+            'caption' => 'max:255'
+        ]);
+
+
+        $post->update([
+            'caption' => $request->caption,
+        ]);
+
+        return redirect('/home');
     }
 
     /**

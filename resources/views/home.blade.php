@@ -22,12 +22,14 @@
 
                     {{ __('You are logged in!') }}
 
-                    {{-- <h3>Feeds</h3>
+                    <h3>Feeds</h3>
                     @foreach ($user->posts as $post)
                         <li>
-                            <img src="{{asset('images/posts/' . $post->image) }}" alt="{{ $post->caption }}"/>
+                            <img src="{{asset('images/posts/' . $post->image) }}" alt="{{ $post->caption }}" width="200px"
+                            height="200px"/>
+                            <a href="/post/{{$post->id}}/edit">Edit</a>
                         </li>
-                    @endforeach --}}
+                    @endforeach
                 </div>
             </div>
         </div>
