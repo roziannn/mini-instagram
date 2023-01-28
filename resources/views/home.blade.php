@@ -17,6 +17,9 @@
                         </div>
                     @endif
 
+                    <a href="/post/create">Upload</a>
+                    <br>
+
                     {{ __('You are logged in!') }}
                 </div>
             </div>

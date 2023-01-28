@@ -16,18 +16,7 @@
                             <x-input label="Full Name" name="fullname" :object="$user" />
                             <x-inputreadonly label="Email" name="email" :object="$user" />
                             <x-textarea label="Bio" name="bio" :object="$user" />
-                            <div class="row mb-3">
-                                <label for="avatar"
-                                    class="col-md-4 col-form-label text-md-end">Avatar</label>
-                                <div class="col-md-6">
-                                    <input type="file" name="avatar" id="avatar"/>
-                                </div>
-                                @if ($errors->has('avatar'))
-                                <span class="invalid-feedback" role="alert">
-                                    <strong> {{ $errors->first('avatar') }} </strong>
-                                </span>
-                            @endif
-                            </div>
+                            <x-fileupload name="avatar"/>
                                 <x-submitbutton text="Update Profile" />
                         </form>
                     </div>
