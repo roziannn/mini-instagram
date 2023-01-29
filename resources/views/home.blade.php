@@ -14,7 +14,7 @@
                                 <img src="{{ asset('images/posts/' . $post->image) }}" alt="{{ $post->caption }}"
                                     width="200px" height="200px" ondblclick="like({{ $post->id }})" />
 
-                                <p>{{ $post->caption }}</p>
+                                <p class="captions">{{ $post->caption }}</p>
                                 <a class="user-link" href="/{{ '@' . $post->user->username }}">{{ '@' . $post->user->username }}</a>
 
                                 {{-- create dinamis id for button  --}}
@@ -23,6 +23,16 @@
                                     {{ $post->is_liked() ? 'unlike' : 'like' }}</button>
 
                                 <script>
+                                    // # = %23 (in url)
+                                    // $1 = hasil pencarian (regular expresion)
+                                    //finding hastag 
+                                    document.querySelectorAll(".captions").forEach(function(el){
+                                        //sistem pencarian = "<a href='/search?query=%23$1'>#$1</a>"
+                                        let renderedText = el.innerHTML.replace(/#(\w+)/g,"<a href='/search?query=%23$1'>#$1</a>");
+                                        el.innerHTML = renderedText //render caption jika ada # agar bisa ditampilkan semua sesuai hastag yg digunakan
+                                    })
+
+                                    //finding post with caption
                                     function like(id) {
                                         const el = document.getElementById('post-btn-' + id)
                                         fetch('/like/' + id)
