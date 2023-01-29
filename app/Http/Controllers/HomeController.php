@@ -35,7 +35,7 @@ class HomeController extends Controller
         $id_list[] = $user->id;
         
 
-        $posts = Post::whereIn('user_id', $id_list)->orderBy('created_at', 'desc')->get();
+        $posts = Post::with('user','likes')->whereIn('user_id', $id_list)->orderBy('created_at', 'desc')->get();
 
         return view('home', compact('posts'));
     }
@@ -43,7 +43,7 @@ class HomeController extends Controller
     public function search(Request $request){
         $querySearch = $request->input('query');
 
-        $posts = Post::where('caption', 'like', '%'. $querySearch .'%')->orderBy('created_at', 'desc')->get();
+        $posts = Post::with('user','likes')->where('caption', 'like', '%'. $querySearch .'%')->orderBy('created_at', 'desc')->get();
 
         return view('home', compact('posts', 'querySearch'));
     }

@@ -46,7 +46,7 @@ class UserController extends Controller
 
     public function show($username)
     {
-        $user = User::where('username', $username)->first();
+        $user = User::with('posts')->where('username', $username)->first();
         //if no user or user empty
         if (!$user) abort(404);
 
