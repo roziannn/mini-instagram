@@ -11,13 +11,17 @@
                     <div class="card-body">
 
                         <x-post :post="$post" />
+                        <hr>
 
-                        <form method="POST" action="/post/{{ $post->id }}">
+                        <form method="POST" action="/comment/{{ $post->id }}">
                             @csrf
-                            @method('PUT')
-                            <x-textarea name="caption" label="caption" :object="$post" />
-                            <x-submitbutton text="Update Post" />
+                            <x-textarea name="body" label="your commentar here" />
+                            <x-submitbutton text="Post Comment" />
                         </form>
+
+                        @foreach ($post->comments as $comment )
+                            <p>{{ $comment->body }} - <a href="/{{'@' . $comment->user->username }}">{{'@' . $comment->user->username }}</a></p>
+                        @endforeach
                     </div>
                 </div>
             </div>

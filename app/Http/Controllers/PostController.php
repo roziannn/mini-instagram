@@ -70,6 +70,7 @@ class PostController extends Controller
     {
         //catch post
         $post = Post::find($id);
+        $post->load('comments.user');
         return view('post.show', compact('post'));
     }
 

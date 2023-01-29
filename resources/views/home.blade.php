@@ -1,4 +1,5 @@
 @extends('layouts.app')
+<link rel="stylesheet" href="css/general.css">
 
 @section('content')
     <div class="container">
@@ -26,9 +27,3 @@
     </div>
 <script src="{{ asset('js/feed.js') }}"></script>
 @endsection
-
-<style>
-    .user-link {
-        text-decoration: none;
-    }
-</style>
