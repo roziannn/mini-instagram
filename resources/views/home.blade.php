@@ -9,11 +9,12 @@
 
                 <div class="card-body">
                     <h3>Feeds</h3>
-                    @foreach ($user->posts as $post)
-                        <li>
+                    @foreach ($posts as $post)
+                        <div>
                             <img src="{{asset('images/posts/' . $post->image) }}" alt="{{ $post->caption }}" width="200px"
                             height="200px"/>
-                        </li>
+                            <a class="user-link" href="/{{'@'.$post->user->username }}">{{'@'.$post->user->username }}</a>
+                        </div>
                     @endforeach
                 </div>
             </div>
@@ -21,3 +22,9 @@
     </div>
 </div>
 @endsection
+
+<style>
+    .user-link {
+        text-decoration: none;
+    }
+</style>
