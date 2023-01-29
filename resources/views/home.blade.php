@@ -12,19 +12,23 @@
                         @foreach ($posts as $post)
                             <div>
                                 <img src="{{ asset('images/posts/' . $post->image) }}" alt="{{ $post->caption }}"
-                                    width="200px" height="200px" />
+                                    width="200px" height="200px" ondblclick="like({{ $post->id }})" />
+
                                 <a class="user-link"
                                     href="/{{ '@' . $post->user->username }}">{{ '@' . $post->user->username }}</a>
 
-                                <button class="btn btn-primary" onclick="like({{ $post->id }}, this)">
-                                    {{ ($post->is_liked() ? 'unlike' : 'like' ) }}</button>
+                                {{-- create dinamis id for button  --}}
+                                <button class="btn btn-primary" onclick="like({{ $post->id }})"
+                                    id="post-btn-{{ $post->id }}">
+                                    {{ $post->is_liked() ? 'unlike' : 'like' }}</button>
 
                                 <script>
-                                    function like(id, el) {
+                                    function like(id) {
+                                        const el = document.getElementById('post-btn-' + id)
                                         fetch('/like/' + id)
                                             .then(response => response.json())
                                             .then(data => {
-                                                el.innerText = (data.status == 'LIKE') ? 'unlike' : 'likeo'
+                                                el.innerText = (data.status == 'LIKE') ? 'unlike' : 'like'
                                             });
                                     }
                                 </script>
