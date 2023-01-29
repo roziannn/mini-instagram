@@ -57,9 +57,16 @@
                                 <a class="nav-link" href="/post/create">Upload</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="/{{ '@' . Auth::user()->username }}">{{ Auth::user()->username }}</a>
+                                <a class="nav-link"
+                                    href="/{{ '@' . Auth::user()->username }}">{{ Auth::user()->username }}</a>
                             </li>
 
+                            
+
+                            <form class="d-flex" action="/search" method="GET">
+                                <input class="form-control me-2" name="query" type="search" placeholder="Search" aria-label="Search">
+                                <button class="btn btn-outline-primary" type="submit">Search</button>
+                            </form>
 
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
@@ -69,15 +76,17 @@
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                     <div>
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                        onclick="event.preventDefault();
+                                        <a class="dropdown-item" href="{{ route('logout') }}"
+                                            onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
+                                            {{ __('Logout') }}
+                                        </a>
 
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                            class="d-none">
+                                            @csrf
+                                        </form>
+                                    </div>
                                 </div>
                             </li>
                         @endguest

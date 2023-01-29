@@ -39,4 +39,12 @@ class HomeController extends Controller
 
         return view('home', compact('posts'));
     }
+
+    public function search(Request $request){
+        $querySearch = $request->input('query');
+
+        $posts = Post::where('caption', 'like', '%'. $querySearch .'%')->get();
+
+        return view('home', compact('posts', 'querySearch'));
+    }
 }
