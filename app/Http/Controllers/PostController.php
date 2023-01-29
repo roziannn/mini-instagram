@@ -98,7 +98,7 @@ class PostController extends Controller
     {
         $post = Post::find($id);
 
-        if ($post->user_id != Auth::user()->id);
+        if ($post->user_id != Auth::user()->id)
         abort(403);
 
         $request->validate([

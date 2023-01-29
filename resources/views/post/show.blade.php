@@ -19,8 +19,13 @@
                             <x-submitbutton text="Post Comment" />
                         </form>
 
-                        @foreach ($post->comments as $comment )
-                            <p>{{ $comment->body }} - <a href="/{{'@' . $comment->user->username }}">{{'@' . $comment->user->username }}</a></p>
+                        @foreach ($post->comments as $comment)
+                            <p>{{ $comment->body }}
+                                - <a href="/{{ '@' . $comment->user->username }}">{{ '@' . $comment->user->username }}</a>
+                                @if (Auth::user()->id == $comment->user->id)
+                                    - <a href="/comment/{{ $comment->id }}/edit">Edit Comment</a>
+                                @endif
+                            </p>
                         @endforeach
                     </div>
                 </div>
