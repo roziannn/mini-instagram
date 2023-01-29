@@ -54,15 +54,21 @@
                             @endif
                         @else
                             <li class="nav-item">
-                                <a href="/post/create">Upload</a>
+                                <a class="nav-link" href="/post/create">Upload</a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/{{ '@' . Auth::user()->username }}">{{ Auth::user()->username }}</a>
+                            </li>
+
+
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                                     data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->username }}
+                                    {{-- {{ Auth::user()->username }} --}}
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                    <div>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

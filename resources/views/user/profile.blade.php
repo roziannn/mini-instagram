@@ -20,19 +20,25 @@
                             </div>
                         @endif
 
-                        <br>
+                        @if (Auth::user()->id == $user->id)
+                            <a href="/user/edit">Edit Profil</a>
+                        @else
+                                <a href="/follow/{{ $user->id }}">{{ (Auth::user()->following->contains($user->id)) ? 'unfollow' : 'follow' }}</a>
+                            @endif
 
-                        <h3>Feeds</h3>
-                        @foreach ($user->posts as $post)
-                            <li>
-                                <img src="{{ asset('images/posts/' . $post->image) }}" alt="{{ $post->caption }}"
-                                    width="200px" height="200px" />
+                            <br>
 
-                                @if (Auth::user()->id == $user->id)
-                                    <a href="/post/{{ $post->id }}/edit">Edit</a>
-                                @endif
-                            </li>
-                        @endforeach
+                            <h3>Feeds</h3>
+                            @foreach ($user->posts as $post)
+                                <li>
+                                    <img src="{{ asset('images/posts/' . $post->image) }}" alt="{{ $post->caption }}"
+                                        width="200px" height="200px" />
+
+                                    @if (Auth::user()->id == $user->id)
+                                        <a href="/post/{{ $post->id }}/edit">Edit</a>
+                                    @endif
+                                </li>
+                            @endforeach
                     </div>
                 </div>
             </div>

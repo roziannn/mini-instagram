@@ -14,7 +14,8 @@ class UserController extends Controller
         return view('user.edit', compact('user'));
     }
 
-    public function update(Request $request){
+    public function update(Request $request)
+    {
         $user = Auth::user();
 
         $request->validate([
@@ -27,9 +28,9 @@ class UserController extends Controller
         $imageName = $user->avatar;
 
         //create name for avatar
-        if($request->avatar){
+        if ($request->avatar) {
             $avatar_img = $request->avatar;
-            $imageName = $user->username.'-'.time() . '.' . $avatar_img->extension();
+            $imageName = $user->username . '-' . time() . '.' . $avatar_img->extension();
             $avatar_img->move(public_path('images/avatar'), $imageName);
         }
 
@@ -43,16 +44,28 @@ class UserController extends Controller
         return redirect('user/edit');
     }
 
-    public function show($username){
+    public function show($username)
+    {
         $user = User::where('username', $username)->first();
         //if no user or user empty
-        if(!$user) abort(404);
+        if (!$user) abort(404);
 
         return view('user.profile', compact('user'));
     }
-    
-    public function follow(){
+
+    public function follow($following_id) //endpoint 
+    {
         $user = Auth::user();
-        dd($user->follower);
+
+        //apakah following nya sudah pernah follow akun ini sblmnya
+        if ($user->following->contains($following_id)) {
+            $user->following()->detach($following_id); //unfollow
+            $message = ['status' => 'UNFOLLOW']; 
+        } else {
+            $user->following()->attach($following_id); //follow
+            $message = ['status' => 'FOLLOW'];
+        }
+
+        return response()->json($message);
     }
 }
