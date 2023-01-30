@@ -3,10 +3,10 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
@@ -59,5 +59,9 @@ class User extends Authenticatable
             //'follows' for nama tabelnya 
             User::class, 'follows', 'following_id', 'follower_id',
         );
+    }
+
+    public function notifications(){
+        return $this->hasMany(Notification::class);
     }
 }
