@@ -38,7 +38,13 @@
                                 {{-- btn like comment --}}
                                 - <button class="btn btn-primary" onclick="like({{ $comment->id }}, 'COMMENT')"
                                     id="comment-btn-{{ $comment->id }}">
-                                    {{ $comment->is_liked() ? 'unlike' : 'like' }}</button>
+                                    {{ $comment->is_liked() ? 'unlike' : 'like' }}
+                                </button>
+
+                                {{-- show count likes --}}
+                                <span id="comment-likescount-{{$comment->id}}">
+                                    {{ $comment->likes_count }}
+                                </span>
                             </p>
                         @endforeach
                     </div>

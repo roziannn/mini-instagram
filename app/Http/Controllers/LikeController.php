@@ -11,7 +11,7 @@ class LikeController extends Controller
 {
     public function toggle($type, $object_id)
     {
-
+        
         if ($type == "POST") {
             $object = Post::find($object_id);
         }else{

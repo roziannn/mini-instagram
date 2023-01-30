@@ -9,7 +9,13 @@
     {{-- create dinamis id for button  --}}
     <button class="btn btn-primary" onclick="like({{ $post->id }})"
         id="post-btn-{{ $post->id }}">
-        {{ $post->is_liked() ? 'unlike' : 'like' }}</button>
+        {{ ($post->is_liked() ? 'unlike' : 'like') }}
+    </button>
+    
+    {{-- show count likes --}}
+    <span id="post-likescount-{{ $post->id }}">
+        {{ $post->likes_count }}
+    </span>
 
     <a class="btn btn-primary" href="/post/{{ $post->id }}">Komentar</a>
 </div>

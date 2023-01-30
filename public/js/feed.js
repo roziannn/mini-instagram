@@ -11,14 +11,31 @@ document.querySelectorAll(".captions").forEach(function(el) {
 //finding post with caption
 function like(id, type='POST') {
 
-    let el = document.getElementById('post-btn-' + id)
-    
-    if(type == 'COMMENT')
-        el = document.getElementById('comment-btn-' + id)
+    let likesCount = 0
+    let el = ''
 
-    fetch('/like/'+ type + '/' + id)
+    if (type == 'POST'){
+        el = document.getElementById('post-btn-' + id)
+        likesCount = document.getElementById('post-likescount-' +id)
+    }else{
+        el = document.getElementById('comment-btn-' + id)
+        likesCount = document.getElementById('comment-likescount-' +id)
+    }
+
+    fetch('/like/' + type + '/' + id)
         .then(response => response.json())
         .then(data => {
-            el.innerText = (data.status == 'LIKE') ? 'unlike' : 'like'
+            let currentCount = 0
+            
+            if (data.status == 'LIKE'){
+                currentCount = parseInt(likesCount.innerHTML) + 1
+                el.innerText = 'unlike' 
+             }else{
+                currentCount = parseInt(likesCount.innerHTML) - 1
+                el.innerText = 'like' 
+            }
+
+            likesCount.innerHTML = currentCount
         });
+        
 }
