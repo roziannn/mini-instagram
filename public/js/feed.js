@@ -37,5 +37,6 @@ function like(id, type='POST') {
 
             likesCount.innerHTML = currentCount
         });
-        
+    
+        return false
 }

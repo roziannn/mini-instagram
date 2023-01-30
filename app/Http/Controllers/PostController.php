@@ -71,6 +71,7 @@ class PostController extends Controller
         //catch post
         $post = Post::find($id);
         $post->load('comments.user');
+        $post->loadCount('likes');
         return view('post.show', compact('post'));
     }
 
