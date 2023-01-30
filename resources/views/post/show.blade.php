@@ -19,6 +19,7 @@
 
                         @foreach ($post->comments as $comment)
                             <p class="mb-0">
+                                <x-avatar :user="$post->user" size="32" />
                                 <a class="user-link" href="/{{ '@' . $comment->user->username }}">{{ '@' . $comment->user->username }}</a>  {{ $comment->body }}
                             </p>
                        

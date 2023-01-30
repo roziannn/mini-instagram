@@ -9,11 +9,11 @@
                         <h3>{{ '@' . $user->username }}</h3>
                     </div>
 
-                    <div class="card-body">
+                    <div class="card-body text-center">
                         <x-avatar :user="$user" />
 
-                        <p>{{ $user->fullname }}</p>
-                        <p>{{ $user->bio }}</p>
+                        <p class="mb-0">{{ $user->fullname }}</p>
+                        <p class="mb-0">{{ $user->bio }}</p>
                         @if (session('status'))
                             <div class="alert alert-success" role="alert">
                                 {{ session('status') }}
@@ -41,14 +41,16 @@
 
                         <h3>Feeds</h3>
                         @foreach ($user->posts as $post)
-                            <li>
+                            <div>
+                                <a href="/post/{{ $post->id }}">
                                 <img src="{{ asset('images/posts/' . $post->image) }}" alt="{{ $post->caption }}"
-                                    width="200px" height="200px" />
-
+                                    width="100%" height="auto" />
+                                </a>
+                                <br>
                                 @if (Auth::user()->id == $user->id)
-                                    <a href="/post/{{ $post->id }}/edit">Edit</a>
+                                    <a class="text-dark" href="/post/{{ $post->id }}/edit">Edit</a>
                                 @endif
-                            </li>
+                            </div>
                         @endforeach
                     </div>
                 </div>

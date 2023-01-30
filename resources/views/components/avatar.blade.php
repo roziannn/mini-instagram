@@ -5,4 +5,5 @@
      : 'https://ui-avatars.com/api/?size=128&name=' . $user->username;
 @endphp
 
-<img src="{{ $avatar_url }}" class="rounded-circle" alt="foto profil {{ $user->username }}" width="128" height="128">
+<img src="{{ $avatar_url }}" class="rounded-circle" 
+    alt="foto profil {{ $user->username }}" width="{{ $size ?? 128}}" height="{{ $size ?? 128}}">
