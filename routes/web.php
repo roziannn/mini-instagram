@@ -30,8 +30,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/like/{post_id}', [LikeController::class, 'toggle']);
 
     //comment
-    Route::post('comment/{post_id}', [CommentController::class, 'store']);
-    Route::get('comment/{comment_id}/edit', [CommentController::class, 'edit']);
-    Route::put('comment/{comment_id}', [CommentController::class, 'update']);
-    Route::get('comment/{comment_id}/delete', [CommentController::class, 'delete']);
+    // Route::post('comment/{post_id}', [CommentController::class, 'store']);
+    // Route::get('comment/{comment_id}/edit', [CommentController::class, 'edit']);
+    // Route::put('comment/{comment_id}', [CommentController::class, 'update']);
+    // Route::get('comment/{comment_id}/delete', [CommentController::class, 'delete']);
+
+    //nested resource for comment
+    Route::resource('post.comment', CommentController::class)->shallow();
 });

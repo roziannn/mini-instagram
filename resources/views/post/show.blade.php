@@ -13,7 +13,7 @@
                         <x-post :post="$post" />
                         <hr>
 
-                        <form method="POST" action="/comment/{{ $post->id }}">
+                        <form method="POST" action="/post/{{ $post->id }}/comment">
                             @csrf
                             <x-textarea name="body" label="your commentar here" />
                             <x-submitbutton text="Post Comment" />
@@ -24,7 +24,14 @@
                                 - <a href="/{{ '@' . $comment->user->username }}">{{ '@' . $comment->user->username }}</a>
                                 @if (Auth::user()->id == $comment->user->id)
                                     - <a href="/comment/{{ $comment->id }}/edit">Edit Comment</a>
-                                    - <a href="/comment/{{ $comment->id }}/delete">Delete</a>
+                                    - <a href="#" onclick="event.preventDefault();
+                                        document.getElementById('delete-form').submit();">Delete</a>
+
+            
+                                    <form id="delete-form" action="/comment/{{ $comment->id }}" method="POST" class="d-none">
+                                        @csrf
+                                        @method('DELETE')
+                                    </form>
                                 @endif
                             </p>
                         @endforeach
