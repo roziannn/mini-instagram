@@ -24,6 +24,7 @@
                                 - <a href="/{{ '@' . $comment->user->username }}">{{ '@' . $comment->user->username }}</a>
                                 @if (Auth::user()->id == $comment->user->id)
                                     - <a href="/comment/{{ $comment->id }}/edit">Edit Comment</a>
+                                    - <a href="/comment/{{ $comment->id }}/delete">Delete</a>
                                 @endif
                             </p>
                         @endforeach
