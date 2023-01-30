@@ -9,9 +9,14 @@ document.querySelectorAll(".captions").forEach(function(el) {
 })
 
 //finding post with caption
-function like(id) {
-    const el = document.getElementById('post-btn-' + id)
-    fetch('/like/' + id)
+function like(id, type='POST') {
+
+    let el = document.getElementById('post-btn-' + id)
+    
+    if(type == 'COMMENT')
+        el = document.getElementById('comment-btn-' + id)
+
+    fetch('/like/'+ type + '/' + id)
         .then(response => response.json())
         .then(data => {
             el.innerText = (data.status == 'LIKE') ? 'unlike' : 'like'

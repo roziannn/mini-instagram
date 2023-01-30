@@ -27,7 +27,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('post', PostController::class);
 
     Route::get('/follow/{user_id}', [UserController::class, 'follow']);
-    Route::get('/like/{post_id}', [LikeController::class, 'toggle']);
+    Route::get('/like/{type}/{post_id}', [LikeController::class, 'toggle']);
 
     //comment
     // Route::post('comment/{post_id}', [CommentController::class, 'store']);

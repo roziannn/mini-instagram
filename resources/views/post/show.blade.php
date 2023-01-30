@@ -24,15 +24,21 @@
                                 - <a href="/{{ '@' . $comment->user->username }}">{{ '@' . $comment->user->username }}</a>
                                 @if (Auth::user()->id == $comment->user->id)
                                     - <a href="/comment/{{ $comment->id }}/edit">Edit Comment</a>
-                                    - <a href="#" onclick="event.preventDefault();
+                                    - <a href="#"
+                                        onclick="event.preventDefault();
                                         document.getElementById('delete-form').submit();">Delete</a>
 
-            
-                                    <form id="delete-form" action="/comment/{{ $comment->id }}" method="POST" class="d-none">
+                                    <form id="delete-form" action="/comment/{{ $comment->id }}" method="POST"
+                                        class="d-none">
                                         @csrf
                                         @method('DELETE')
                                     </form>
                                 @endif
+
+                                {{-- btn like comment --}}
+                                - <button class="btn btn-primary" onclick="like({{ $comment->id }}, 'COMMENT')"
+                                    id="comment-btn-{{ $comment->id }}">
+                                    {{ $comment->is_liked() ? 'unlike' : 'like' }}</button>
                             </p>
                         @endforeach
                     </div>

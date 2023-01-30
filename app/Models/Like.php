@@ -11,4 +11,8 @@ class Like extends Model
 
     protected $guarded = ['id'];
 
+    public function likeable(){
+        return $this->morphTo(); //lebih dari satu, digunakan untuk post like atau comment like
+    }
+
 }
