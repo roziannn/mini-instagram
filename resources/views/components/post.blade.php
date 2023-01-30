@@ -23,5 +23,8 @@
         {{ $post->is_liked() ? 'unlike' : 'like' }}
     </a> -
 
+    @isset($isShow)
+    @else
     <a class="text-dark" href="/post/{{ $post->id }}">Komentar</a>
+    @endisset
 </div>
