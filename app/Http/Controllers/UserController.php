@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Notification;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -67,5 +68,23 @@ class UserController extends Controller
         }
 
         return response()->json($message);
+    }
+
+    public function notification() 
+    {
+        $user = Auth::user();
+        
+        $notifs = Notification::where('user_id', $user->id)->paginate(15);
+
+        return view('user.notification', compact('notifs'));
+    }
+
+    public function notificationSeen() 
+    {
+        $user = Auth::user();
+        
+        Notification::where('user_id', $user->id)->update(['seen' => true]);
+
+        return ['msg' => 'success'];
     }
 }

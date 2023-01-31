@@ -14,7 +14,7 @@
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
     <link rel="stylesheet" href="/css/general.css">
-    
+
     @stack('styles')
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
@@ -58,15 +58,20 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="/post/create">Upload</a>
                             </li>
+
                             <li class="nav-item">
                                 <a class="nav-link"
                                     href="/{{ '@' . Auth::user()->username }}">{{ Auth::user()->username }}</a>
                             </li>
 
-                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="/notification">Notification</a>
+                            </li>
+
 
                             <form class="d-flex" action="/search" method="GET">
-                                <input class="form-control me-2" name="query" type="search" placeholder="Search" aria-label="Search">
+                                <input class="form-control me-2" name="query" type="search" placeholder="Search"
+                                    aria-label="Search">
                                 <button class="btn btn-outline-primary" type="submit">Search</button>
                             </form>
 
