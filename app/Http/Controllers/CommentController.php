@@ -72,6 +72,6 @@ class CommentController extends Controller
 
         $comment->delete();
 
-        return redirect()->back();
+        return redirect('/post/' . $comment->post_id);
     }
 }

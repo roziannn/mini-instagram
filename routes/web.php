@@ -31,6 +31,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/notification', [UserController::class, 'notification']);
     Route::get('/notification/seen', [UserController::class, 'notificationSeen']);
+    Route::get('/notification/count', [UserController::class, 'notificationCount']);
 
     //comment
     // Route::post('comment/{post_id}', [CommentController::class, 'store']);

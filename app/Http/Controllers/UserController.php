@@ -87,4 +87,10 @@ class UserController extends Controller
 
         return ['msg' => 'success'];
     }
+
+    public function notificationCount() 
+    {
+        $total = Auth::user()->notifications()->where('seen', 0)->count();
+        return ['total' => $total];
+    }
 }

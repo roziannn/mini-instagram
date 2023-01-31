@@ -65,7 +65,14 @@
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link" href="/notification">Notification</a>
+                                <a class="nav-link" href="/notification">Notification <small id="notif-count"></small></a>
+                                <script>
+                                    fetch('/notification/count')
+                                    .then(response => response.json())
+                                    .then(data=>{
+                                        document.getElementById('notif-count').innerText = parseInt(data.total);
+                                    }).catch(err=>{console.log(err);})
+                                </script>
                             </li>
 
 
