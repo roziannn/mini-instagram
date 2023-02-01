@@ -1,3 +1,33 @@
+//infinite scroll
+let postTime = ''
+let lastPostTime = ''
+let lastFetchTime = ''
+
+window.onscroll = function() {
+
+    const bodyHeight = document.body.scrollHeight
+    const scrollPoint = window.scrollY + window.innerHeight
+    const tolerantDistance = 100
+
+    postTime = document.getElementsByClassName('post-time')
+    lastPostTime = postTime[postTime.length - 1].value
+
+    if(scrollPoint >= bodyHeight - tolerantDistance) {
+
+        if(lastFetchTime != lastPostTime) {
+
+            fetch('/loadmore/' + lastPostTime)
+                .then(response => response.json())
+                .then(data => {
+                    console.log('load more..')
+                    console.log(data)
+                    lastFetchTime = lastPostTime
+                })
+                .catch(err => console.log(err))
+        }
+    }
+}
+
 // # = %23 (in url)
 // $1 = hasil pencarian (regular expresion)
 //finding hastag 

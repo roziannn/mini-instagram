@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -16,6 +17,20 @@ class HomeController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+    }
+
+    public function loadmore($time){
+
+        $user = Auth::user();
+
+        $id_list = $user->following()->pluck('follows.following_id')->toArray();
+        $id_list[] = $user->id;
+        
+
+        $posts = Post::with('user','likes')->withCount('likes')->whereIn('user_id', $id_list)
+        ->orderBy('created_at', 'desc')->whereTime('created_at', '<', Carbon::parse((int)$time))->take(3)->get();
+
+        return ['post' => $posts];
     }
 
     /**
@@ -35,7 +50,7 @@ class HomeController extends Controller
         $id_list[] = $user->id;
         
 
-        $posts = Post::with('user','likes')->withCount('likes')->whereIn('user_id', $id_list)->orderBy('created_at', 'desc')->get();
+        $posts = Post::with('user','likes')->withCount('likes')->whereIn('user_id', $id_list)->orderBy('created_at', 'desc')->take(3)->get();
 
         return view('home', compact('posts'));
     }
@@ -43,7 +58,7 @@ class HomeController extends Controller
     public function search(Request $request){
         $querySearch = $request->input('query');
 
-        $posts = Post::with('user','likes')->withCount('likes')->where('caption', 'like', '%'. $querySearch .'%')->orderBy('created_at', 'desc')->get();
+        $posts = Post::with('user','likes')->withCount('likes')->where('caption', 'like', '%'. $querySearch .'%')->orderBy('created_at', 'desc')->take(3)->get();
 
         return view('home', compact('posts', 'querySearch'));
     }

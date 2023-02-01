@@ -19,6 +19,10 @@
                                 {{ session('status') }}
                             </div>
                         @endif
+                            
+                        <p class="mb-0">Following : {{ $user->following()->count()  }}</p>
+                        <p>Followers : {{ $user->follower()->count()  }}</p>
+                        <br>
 
                         @if (Auth::user()->id == $user->id)
                             <a class="btn btn-primary" href="/user/edit">Edit Profil</a>

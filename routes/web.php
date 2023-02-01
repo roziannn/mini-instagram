@@ -42,3 +42,5 @@ Route::middleware('auth')->group(function () {
     //nested resource for comment
     Route::resource('post.comment', CommentController::class)->shallow();
 });
+
+Route::get('/loadmore/{time}', [HomeController::class, 'loadmore']);
