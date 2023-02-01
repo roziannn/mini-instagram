@@ -21,10 +21,10 @@ window.onscroll = function() {
                     console.log('load more..')
                     lastFetchTime = lastPostTime
 
-                    for (let i = 0; i <data.post.length; i++) {
-                        let newPost = renderPost(data.post[i])
-                        document.getElementById('post-wrapper').insertAdjacentHTML('beforeend', newPost)
-                    }
+                    // for (let i = 0; i <data.post.length; i++) {
+                    //     let newPost = renderPost(data.post[i])
+                    //     document.getElementById('post-wrapper').insertAdjacentHTML('beforeend', newPost)
+                    // }
                 })
                 .catch(err => console.log(err))
         }

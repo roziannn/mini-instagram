@@ -12,10 +12,18 @@
                         <form method="POST" action="/post" enctype="multipart/form-data">
                             @csrf
 
-                          <x-fileupload name="image"/>
-
+                            <div class="text-center my-2">
+                                <img id="previewImg" src="" alt="" width="50%">
+                            </div>
+                            <x-fileupload name="image" />
                             <x-textarea name="caption" label="caption" />
                             <x-submitbutton text="Post" />
+
+                            <script>
+                                function preview() {
+                                    document.getElementById('previewImg').src = URL.createObjectURL(event.target.files[0]);
+                                }
+                            </script>
                         </form>
                     </div>
                 </div>
