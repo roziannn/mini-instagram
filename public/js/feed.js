@@ -9,23 +9,34 @@ window.onscroll = function() {
     const scrollPoint = window.scrollY + window.innerHeight
     const tolerantDistance = 100
 
-    postTime = document.getElementsByClassName('post-time')
-    lastPostTime = postTime[postTime.length - 1].value
+    // postTime = document.getElementsByClassName('post-time')
+    // lastPostTime = postTime[postTime.length - 1].value
 
-    if(scrollPoint >= bodyHeight - tolerantDistance) {
+    // if(scrollPoint >= bodyHeight - tolerantDistance) {
 
-        if(lastFetchTime != lastPostTime) {
+    //     if(lastFetchTime != lastPostTime) {
+    //         fetch('/loadmore/' + lastPostTime)
+    //             .then(response => response.json())
+    //             .then(data => {
+    //                 console.log('load more..')
+    //                 lastFetchTime = lastPostTime
 
-            fetch('/loadmore/' + lastPostTime)
-                .then(response => response.json())
-                .then(data => {
-                    console.log('load more..')
-                    console.log(data)
-                    lastFetchTime = lastPostTime
-                })
-                .catch(err => console.log(err))
-        }
-    }
+    //                 for (let i = 0; i <data.post.length; i++) {
+    //                     let newPost = renderPost(data.post[i])
+    //                     document.getElementById('post-wrapper').insertAdjacentHTML('beforeend', newPost)
+    //                 }
+    //             })
+    //             .catch(err => console.log(err))
+    //     }
+    // }
+}
+
+function renderPost(post) {
+    return `<div>
+                <img src="/images/posts/${post.image}" alt="${post.caption}" width="100%" height="auto"
+                ondblclick="like(${post.id})" />
+                <p> ${(post.caption != null) ? post.caption : ''}</p>
+            </div>`
 }
 
 // # = %23 (in url)

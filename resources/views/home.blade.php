@@ -10,12 +10,13 @@
                         @endisset
                     </div>
 
-                    <div class="card-body">
+                    <div class="card-body" id="post-wrapper">
                         @forelse ($posts as $post)
-                            <x-post :post="$post" />
-                            <input type="hidden" class="post-time" value="{{strtotime($post->created_at )}}">
-                            <br>
-
+                            <div>
+                                <x-post :post="$post" />
+                                <input type="hidden" class="post-time" value="{{ strtotime($post->created_at) }}">
+                                <br>
+                            </div>
                         @empty
                             <p> Tidak ditemukan.</p>
                         @endforelse
